@@ -136,7 +136,7 @@ def get_sample(sample_file):
     samples = [] 
     with open(sample_file) as f:
         for line in f:
-            samples.append(line.strip().split()[0])
+            samples.append(line.strip().split('\t')[0])
     return samples
 
 def print_data(target_file, reference_file, sample_file, create_r_data):
@@ -148,10 +148,10 @@ def print_data(target_file, reference_file, sample_file, create_r_data):
     if not create_r_data:
         print taqman_header
         print taqman_top_row,
-        process_file(target_file, samples,fam=True, create_r_data=r_data)
+        process_file(target_file, samples,fam=True) 
         print mid_filler
         print taqman_top_row,
-        process_file(reference_file, samples, fam=False, create_r_data=r_data)
+        process_file(reference_file, samples, fam=False)
     else:
         print_r_data(reference_file, target_file, samples)
 
